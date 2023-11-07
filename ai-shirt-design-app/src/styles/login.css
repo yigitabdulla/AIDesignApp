@@ -1,0 +1,16 @@
+.custom-google-button {
+    background-color: #a1a1a138; /* Change the background color */
+    color: #a1a1a1; /* Change the text color */
+    border: none; /* Remove borders */
+    padding: 5px 10px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add rounded corners */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custom-google-button:hover {
+    color: #138bc7;
+    transition: all 0.3s ease;
+  }
