@@ -1,7 +1,6 @@
 import React from 'react';
 import "../styles/home.css"
 import Navbar from '../components/Navbar';
-import shirt from "../images/shirt.jpg"
 
 function Home() {
     return (
