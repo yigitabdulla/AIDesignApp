@@ -3,7 +3,6 @@ import "../styles/navbar.css"
 import logo from "../images/logo.png"
 import BrushIcon from '@mui/icons-material/Brush';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LoginIcon from '@mui/icons-material/Login';
 import Logout from './Logout';
 import Login from './Login';
 import {gapi} from 'gapi-script'
@@ -23,7 +22,7 @@ function Navbar() {
         gapi.load('client:auth2',start)
     })
 
-    const [signed,setSigned] = useState(false)
+    const [signed,setSigned] = useState(true)
 
     return (
         <nav className="navbar">
@@ -33,7 +32,7 @@ function Navbar() {
             </div>
             <ul>
                 <li><a href="/design">Design <BrushIcon /></a></li>
-                {signed ? <li><a href="/profile">Profile <AccountCircleIcon /></a></li> : <li className='sign-in'><a><Login/></a></li>}
+                {signed ?<><li><a href="/profile">Profile <AccountCircleIcon /></a></li><li className='sign-in'><a><Logout/></a></li></> : <li className='sign-in'><a><Login/></a></li>}
             </ul>
         </nav>
     )
