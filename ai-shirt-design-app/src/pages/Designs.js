@@ -3,39 +3,91 @@ import "../styles/designs.css"
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import React, { useState, useEffect } from 'react';
 
 function Designs() {
+
+    const [windowDimensions, setWindowDimensions] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+
+    const handleResize = () => {
+        setWindowDimensions({
+            width: window.innerWidth,
+            height: window.innerHeight,
+        });
+    };
+
+    useEffect(() => {
+        // Check if window is defined (for example, during server-side rendering)
+        if (typeof window !== 'undefined') {
+            // Add event listener on component mount
+            window.addEventListener('resize', handleResize);
+
+            // Remove event listener on component unmount
+            return () => {
+                window.removeEventListener('resize', handleResize);
+            };
+        }
+    }, []); // Empty dependency array means this effect will only run on mount and unmount
+
+
 
 
     return (
         <div className="design-container">
             <Navbar />
-            <div className="profile">
-                <ul className="profile-navbar">
-                    <a href="/profile/"><li id="about">About</li></a>
-                    <a href="/profile/designs"><li id="designs">Designs</li></a>
-                    <a href="/profile/orders"><li id="orders">Orders</li></a>
-                </ul>
-                <div className="designs">
-                    <ImageList className="image-list">
-                        {itemData.map((item) => (
-                            <ImageListItem key={item.img} className="image-item">
-                                <img
-                                    srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                    src={`${item.img}?w=248&fit=crop&auto=format`}
-                                    alt={item.title}
-                                    loading="lazy"
-                                />
-                                <ImageListItemBar
-                                    title={item.title}
-                                    subtitle={<span>by: {item.author}</span>}
-                                    position="below"
-                                />
-                            </ImageListItem>
-                        ))}
-                    </ImageList>
+            {(windowDimensions.width > 992) ?
+                <div className="profile">
+                    <ul className="profile-navbar">
+                        <a href="/profile/"><li id="about">About</li></a>
+                        <a href="/profile/designs"><li id="designs">Designs</li></a>
+                        <a href="/profile/orders"><li id="orders">Orders</li></a>
+                    </ul>
+                    <div className="designs">
+                        <ImageList className="image-list">
+                            {itemData.map((item) => (
+                                <ImageListItem key={item.img} className="image-item">
+                                    <img
+                                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                        src={`${item.img}?w=248&fit=crop&auto=format`}
+                                        alt={item.title}
+                                        loading="lazy"
+                                    />
+                                    <ImageListItemBar
+                                        title={item.title}
+                                        subtitle={<span>by: {item.author}</span>}
+                                        position="below"
+                                    />
+                                </ImageListItem>
+                            ))}
+                        </ImageList>
+                    </div>
                 </div>
-            </div>
+                :
+                <div className="mobile-designs">
+                    <div className="designs">
+                        <ImageList className="image-list">
+                            {itemData.map((item) => (
+                                <ImageListItem key={item.img} className="image-item">
+                                    <img
+                                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                        src={`${item.img}?w=248&fit=crop&auto=format`}
+                                        alt={item.title}
+                                        loading="lazy"
+                                    />
+                                    <ImageListItemBar
+                                        title={item.title}
+                                        subtitle={<span>by: {item.author}</span>}
+                                        position="below"
+                                    />
+                                </ImageListItem>
+                            ))}
+                        </ImageList>
+                    </div>
+                </div>
+            }
         </div>
     )
 }

@@ -12,11 +12,17 @@ export class ParticlesContainer extends React.PureComponent {
   render() {
     const options = {
       preset: "links",
-      fullScreen: {"zIndex":-1},
+      fullScreen: { "zIndex": -1 },
       background: {
         color: "000000",
-    }
-      
+      },
+      particles: {
+        number: {
+          value: 25,
+        },
+        
+      },
+
     }
 
     return <Particles options={options} init={this.customInit} />
