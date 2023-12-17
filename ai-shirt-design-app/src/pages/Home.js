@@ -27,7 +27,6 @@ function Home() {
                     <img className="shirt" src="https://cdn.pixabay.com/photo/2014/04/02/10/36/man-303968_640.png" />
                 </div>
 
-
             </div>
         </div>
     )

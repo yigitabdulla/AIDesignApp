@@ -54,6 +54,14 @@
 
 }
 
+.navbar ul li span {
+    color: #a1a1a1;
+    font-size: 20px;
+    border-radius: 5px;
+    position: relative;
+    top: -15px;
+}
+
 .navbar ul li a:hover {
     font-size: 1.2rem;
     color: #138bc7;

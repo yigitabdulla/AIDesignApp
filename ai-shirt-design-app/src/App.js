@@ -6,9 +6,13 @@ import Profile from './pages/Profile';
 import Designs from './pages/Designs';
 import Orders from './pages/Orders';
 import Design from './pages/Design'
+import Cart from './pages/Cart'
 
 function App() {
+
+
   return (
+    
     <div className="App">
       <ParticlesContainer/>
       <Router>
@@ -17,7 +21,8 @@ function App() {
           <Route path="/profile" element={<Profile />}/>
           <Route path="/profile/designs" element={<Designs />}/>
           <Route path="/profile/orders" element={<Orders />}/>
-          <Route path="/design" element={<Design />}/>
+          <Route path="/design" element={<Design/>}/>
+          <Route path="/cart" element={<Cart/>}/>
         </Routes>
       </Router>
     </div>

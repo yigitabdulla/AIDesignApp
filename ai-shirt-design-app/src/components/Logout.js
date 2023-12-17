@@ -6,7 +6,7 @@ const clientId = "726899538432-jjmckcjuugvvg0vlp3ace9dmrhv2jrd3.apps.googleuserc
 
 function Logout() {
 
-    const onSuccess = (res) => {
+    const onLogoutSuccess = (res) => {
         console.log("Log out succesfull!")
     }
 
@@ -15,7 +15,7 @@ function Logout() {
             <GoogleLogout
                 clientId= {clientId}
                 buttonText="Logout"
-                onLogoutSuccess={onSuccess}
+                onLogoutSuccess={onLogoutSuccess}
                 render={(renderProps) => (
                     <button
                         id="custom-google-login-button"
