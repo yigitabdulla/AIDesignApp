@@ -13,6 +13,8 @@ const clientId = "726899538432-jjmckcjuugvvg0vlp3ace9dmrhv2jrd3.apps.googleuserc
 
 function Navbar() {
 
+    const [myArray, setMyArray] = useState([]);
+
     const [cookies,setCookies] = useCookies(["access_token"])
 
     const navRef = useRef()
@@ -32,6 +34,14 @@ function Navbar() {
         gapi.load('client:auth2', start)
     })
 
+    useEffect(() => {
+        // Retrieve the array from local storage when the component mounts
+        const storedArray = JSON.parse(localStorage.getItem('productArray')) || [];
+        setMyArray(storedArray);
+    }, []);
+
+    const total_item = myArray.reduce((sum, item) => sum + item.quantity, 0);
+
     return (
         <>
             <nav className="navbar">
@@ -41,7 +51,7 @@ function Navbar() {
                 </div>
                 <ul>
                     <li><a href="/design">Design <BrushIcon /></a></li>
-                    <li><a href="/cart">Cart <ShoppingCartIcon /></a><span>0</span></li>
+                    <li><a href="/cart">Cart <ShoppingCartIcon /></a><span id='cart-num'>{total_item}</span></li>
                     {cookies.access_token && <li><a href="/profile">Profile <AccountCircleIcon /></a></li>}
                     <li className='sign-in'><a><Login /></a></li>
                 </ul>
