@@ -28,10 +28,17 @@ body {
 .main {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .text {
     font-size: 40px;
+    width: 80%;
+}
+
+.sub-text {
+    width: 85%;
 }
 
 .left {
@@ -44,6 +51,7 @@ body {
     align-items: center;
     justify-content: center;
     color: white;
+    margin-top: 10px;
     border-radius: 5px;
     background-color: transparent;
     width: 300px;
@@ -71,7 +79,7 @@ body {
 }
 
 .titles {
-    margin-top: 25px;
+    margin-top: 35px;
     width: 80%;
     display: flex;
     align-items: center;
@@ -85,7 +93,7 @@ body {
 }
 
 .cards-title {
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .cards {
@@ -114,6 +122,13 @@ body {
         align-items: center;
     }
 
+    .left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
     .shirt{
         width: 200px;
         height: 300px;
@@ -123,6 +138,33 @@ body {
     }
 
     .text {
-        font-size: 16px;
+        font-size: 25px;
+        width: 100%;
+    }
+    
+    .sub-text {
+        width: 100%;
+    }
+
+    .titles {
+        margin-top: 35px;
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+    }
+
+    .cards-title {
+        text-align: center;
+        width: 90%;
+        margin-top: 30px;
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: column;
+        
     }
 }

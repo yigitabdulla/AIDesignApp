@@ -23,28 +23,28 @@ function Home() {
                         <p className='text'>
                             Unleash your creativity by designing, customizing, and printing your own unique products
                         </p>
-                        <p>
-                            Elevate your style with personalized shirt designs—put your spin on essentials and order effortlessly from AiDesign.
+                        <p className='sub-text'>
+                            Elevate your style with personalized shirt designs, put your spin on essentials and order effortlessly from AiDesign.
                         </p>
                         <button className='text-button'>
                             Create your own design
                         </button>
                     </div>
-                    <img className="shirt" src="https://cdn.pixabay.com/photo/2014/04/02/10/36/man-303968_640.png" />
+                    <img className="shirt" src="https://images.pexels.com/photos/10250614/pexels-photo-10250614.jpeg" />
                 </div>
 
             </div>
 
             <div className='titles'>
                 <div className='title'><div><DrawIcon /></div>Simple to craft and personalize</div>
-                <div className='title'><div><AllInclusiveIcon /></div>Environmentally conscious and local manufacturing.</div>
+                <div className='title'><div><AllInclusiveIcon /></div>Environmentally conscious and local manufacturing</div>
                 <div className='title'><div><LocalShippingIcon /></div>Fast and free shipping</div>
                 <div className='title'><div><SentimentSatisfiedAltIcon /></div>A guarantee of customer happiness</div>
             </div>
             <h1 className='cards-title'>Start create your own design</h1>
 
             <div className='cards'>
-                <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: '#1c1c1c' }}>
+                <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: '#1c1c1c', marginBottom: "10px" }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -62,7 +62,7 @@ function Home() {
                         </CardContent>
                     </CardActionArea>
                 </Card>
-                <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: '#1c1c1c' }}>
+                <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: '#1c1c1c', marginBottom: "10px" }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -80,7 +80,7 @@ function Home() {
                         </CardContent>
                     </CardActionArea>
                 </Card>
-                <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: '#1c1c1c' }}>
+                <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: '#1c1c1c', marginBottom: "10px" }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
