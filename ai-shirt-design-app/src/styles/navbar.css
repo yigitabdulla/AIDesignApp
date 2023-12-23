@@ -70,6 +70,12 @@
     transition: all 0.3s ease;
 }
 
+.navbar-img {
+    margin-left: 5px;
+    width: 30px;
+    border-radius: 50%;
+}
+
 .sign-in {
     cursor: pointer;
 }

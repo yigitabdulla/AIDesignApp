@@ -2,9 +2,10 @@ import Navbar from "../components/Navbar"
 import "../styles/profile.css"
 import React, { useState, useEffect } from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link } from 'react-router-dom';
 
 function Profile() {
+
+    const [user, setUser] = useState({})
 
     const [windowDimensions, setWindowDimensions] = useState({
         width: window.innerWidth,
@@ -19,6 +20,8 @@ function Profile() {
     };
 
     useEffect(() => {
+        const user = JSON.parse(window.localStorage.getItem("user"))
+        setUser(user)
         // Check if window is defined (for example, during server-side rendering)
         if (typeof window !== 'undefined') {
             // Add event listener on component mount
@@ -29,6 +32,7 @@ function Profile() {
                 window.removeEventListener('resize', handleResize);
             };
         }
+        
     }, []); // Empty dependency array means this effect will only run on mount and unmount
 
 
@@ -46,8 +50,8 @@ function Profile() {
                                 <a href="/profile/orders"><li id="orders">Orders</li></a>
                             </ul>
                             <div className="about">
-                                <span>Full Name:</span>
-                                <span>Email:</span>
+                                <span>Full Name: {user.name +" " + user.familyName}</span>
+                                <span>Email: {user.email}</span>
                                 <span>Phone:</span>
                                 <span>Adress:</span>
                             </div>

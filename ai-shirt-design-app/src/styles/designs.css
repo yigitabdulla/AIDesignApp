@@ -5,7 +5,7 @@
     width: 90vw;
     height: 80vh;
     font-family: 'Inter', sans-serif;
-	font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', serif;
 }
 
 .design-container {
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-    
+
 }
 
 .profile {
@@ -30,7 +30,7 @@
     flex-wrap: wrap;
     align-items: flex-start;
     border-right: 1px solid gray;
-    
+
 }
 
 .profile-navbar a {
@@ -52,7 +52,7 @@
     width: 100%;
 }
 
-.about span{
+.about span {
     margin-bottom: 20px;
 }
 
@@ -78,13 +78,13 @@
         display: flex;
         flex-direction: column;
     }
-    
-    .about span{
+
+    .about span {
         margin-bottom: 20px;
     }
-    
-   
-    
+
+
+
     .image-item {
         max-width: 500px;
         max-height: 450px;
