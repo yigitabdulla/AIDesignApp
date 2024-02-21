@@ -42,7 +42,7 @@ function Login() {
         console.log(response.profileObj)
         try {
             if (isEmpty(response.errors)) {
-                await axios.post('http://localhost:8000/auth/login', response.profileObj);
+                //await axios.post('http://localhost:8000/auth/login', response.profileObj);
                 console.log(response)
                 setCookies("access_token",response.accessToken)
                 window.localStorage.setItem("user",JSON.stringify(response.profileObj))

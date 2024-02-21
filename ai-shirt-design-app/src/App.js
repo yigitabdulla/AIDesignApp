@@ -1,6 +1,5 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import { ParticlesContainer } from './components/Background';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Designs from './pages/Designs';
@@ -14,7 +13,6 @@ function App() {
   return (
     
     <div className="App">
-      <ParticlesContainer/>
       <Router>
         <Routes>
           <Route path="/" element={<Home />}/>

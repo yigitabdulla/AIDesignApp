@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import "../styles/navbar.css"
 import logo from "../images/logo.png"
 import BrushIcon from '@mui/icons-material/Brush';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useCookies } from "react-cookie";
 import Login from './Login';
 import { gapi } from 'gapi-script'
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const clientId = "726899538432-jjmckcjuugvvg0vlp3ace9dmrhv2jrd3.apps.googleusercontent.com"
 
@@ -56,8 +56,17 @@ function Navbar() {
                 <ul>
                     <li><a href="/design">Design <BrushIcon /></a></li>
                     <li><a href="/cart">Cart <ShoppingCartIcon /></a><span id='cart-num'>{total_item}</span></li>
-                    {cookies.access_token && <li><a href="/profile">Profile <img className='navbar-img' src={user.imageUrl} /></a></li>}
-                    <li className='sign-in'><a><Login /></a></li>
+                    {cookies.access_token && 
+                    <li>
+                        <a href="/profile"><img className='navbar-img' src={user.imageUrl}/><ArrowDropDownIcon/></a>
+                        <ul id='sub-menu'>
+                            <li><a href='/profile'>Profile</a></li>
+                            <li><a href='/profile/designs'>Designs</a></li>
+                            <li><a href='/profile/orders'>Orders</a></li>
+                            <li><a><Login /></a></li>
+                        </ul>
+                    </li>}
+                    {!cookies.access_token && <li className='sign-in'><a><Login /></a></li>}
                 </ul>
                 <div className="toggle-button" onClick={showNavbar}>
                     <MenuIcon style={{ color: 'white' }} />

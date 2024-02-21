@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar"
 import "../styles/profile.css"
 import React, { useState, useEffect } from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import EditIcon from '@mui/icons-material/Edit';
 
 function Profile() {
 

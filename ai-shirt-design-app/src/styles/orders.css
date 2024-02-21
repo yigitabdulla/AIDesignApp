@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: rgb(0, 0, 0);
     
 }
 
@@ -31,7 +31,7 @@
     justify-content: center;
     text-decoration: none;
     font-size: 1.2rem;
-    color: white;
+    color: rgb(0, 0, 0);
     margin-bottom: 20px;
     margin-right: 7px;
 }
@@ -83,6 +83,7 @@
     margin-right: 5px;
     cursor: pointer;
     transition: ease 0.3s;
+    color: black;
 }
 
 .order-btn:hover {
@@ -155,7 +156,7 @@
         height: 30px;
         border-radius: 5px;
         background-color: rgba(83, 181, 255, 0.153);
-        color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
         border: none;
         margin-right: 5px;
         cursor: pointer;

@@ -45,60 +45,29 @@ function Home() {
             <h1 className='cards-title'>Start create your own design</h1>
 
             <div className='cards'>
-                <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: '#1c1c1c', marginBottom: "10px" }}>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            height="250"
-                            image="https://cdn.pixabay.com/photo/2021/10/28/11/51/kids-6749530_1280.jpg"
-                            alt="img"
-                        />
-                        <CardContent style={{ backgroundColor: '#transparent' }}>
-                            <Typography gutterBottom variant="h5" component="div" color="white">
-                                Comfort
-                            </Typography>
-                            <Typography variant="body2" color="white">
-                                Discover our new collection. Comfort and style meet in every size!
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-                <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: '#1c1c1c', marginBottom: "10px" }}>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            height="250"
-                            image="https://cdn.pixabay.com/photo/2019/07/27/21/42/t-shirt-4367577_1280.jpg"
-                            alt="img"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div" color="white">
-                                Sizes and colors
-                            </Typography>
-                            <Typography variant="body2" color="white">
-                                Sizes and colors to meet all customer needs
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-                <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: '#1c1c1c', marginBottom: "10px" }}>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            height="250"
-                            image="https://cdn.pixabay.com/photo/2017/05/28/18/38/t-shirt-2351761_1280.jpg"
-                            alt="img"
-                        />
-                        <CardContent >
-                            <Typography gutterBottom variant="h5" component="div" color="white">
-                                Detailed printing
-                            </Typography>
-                            <Typography variant="body2" color="white">
-                                High quality prints printed on quality and comfortable fabrics
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
+                <div className='card'>
+                    <img src='https://cdn.pixabay.com/photo/2021/10/28/11/51/kids-6749530_1280.jpg'/>
+                    <div className='card-text'>
+                        <h2>Comfort</h2>
+                        <p>Discover our new collection. Comfort and style meet in every size!</p>
+                    </div>
+                </div>
+
+                <div className='card'>
+                    <img src='https://cdn.pixabay.com/photo/2019/07/27/21/42/t-shirt-4367577_1280.jpg'/>
+                    <div className='card-text'>
+                        <h2>Sizes and colors</h2>
+                        <p>Sizes and colors to meet all customer needs</p>
+                    </div>
+                </div>
+
+                <div className='card'>
+                    <img src='https://cdn.pixabay.com/photo/2017/05/28/18/38/t-shirt-2351761_1280.jpg'/>
+                    <div className='card-text'>
+                        <h2>Detailed printing</h2>
+                        <p>High quality prints printed on quality and comfortable fabrics</p>
+                    </div>
+                </div>
             </div>
 
         </div>

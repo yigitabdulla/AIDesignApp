@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     color: transparent;
-    background-color: transparent;
+    background-color: rgba(208, 208, 208, 0.108);
     text-align: center;
     font-family: 'Inter', sans-serif;
 	font-family: 'Playfair Display', serif;
@@ -22,12 +22,13 @@
 
 .logo a {
     text-decoration: none;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .logo img {
     margin-left: 15px;
     width: 64px;
+    filter: opacity(0.5) drop-shadow(0 0 0 blue);
 }
 
 .navbar ul {
@@ -47,7 +48,7 @@
 }
 
 .navbar ul li a {
-    color: #a1a1a1;
+    color: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,7 +58,7 @@
 }
 
 .navbar ul li span {
-    color: #a1a1a1;
+    color: #000000;
     font-size: 20px;
     border-radius: 5px;
     position: relative;
@@ -76,6 +77,28 @@
     border-radius: 50%;
 }
 
+#sub-menu {
+    background-color: #a1a1a138;
+    top: 55px;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    z-index: 1;
+}
+
+#sub-menu li{
+    
+}
+
+#sub-menu li a{
+    font-size: 16px;
+}
+
+li:hover ul#sub-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
 .sign-in {
     cursor: pointer;
 }
@@ -91,7 +114,7 @@
     right: 2em;
     top: 60px;
     width: 200px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(45, 45, 45, 0.11);
     backdrop-filter: blur(15px);
     border-radius: 10px;
     overflow: hidden;
@@ -112,7 +135,7 @@
 
 .dropdown-menu li a {
     text-decoration: none;
-    color: #a1a1a1;
+    color: #000000;
 }
 
 .dropdown-menu li a:hover {
@@ -174,7 +197,7 @@
 
     .dropdown-menu li a {
         text-decoration: none;
-        color: #a1a1a1;
+        color: #000000;
     }
 
     .dropdown-menu li a:hover {
