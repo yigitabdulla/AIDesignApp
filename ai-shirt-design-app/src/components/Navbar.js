@@ -9,7 +9,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-const clientId = "726899538432-jjmckcjuugvvg0vlp3ace9dmrhv2jrd3.apps.googleusercontent.com"
 
 function Navbar() {
 
@@ -24,16 +23,7 @@ function Navbar() {
         navRef.current.classList.toggle("dropdown-menu")
     }
 
-    useEffect(() => {
-        function start() {
-            gapi.client.init({
-                clientId: clientId,
-                scope: ""
-            })
-        }
-
-        gapi.load('client:auth2', start)
-    })
+    
 
     useEffect(() => {
         // Retrieve the array from local storage when the component mounts
@@ -58,7 +48,8 @@ function Navbar() {
                     <li><a href="/cart">Cart <ShoppingCartIcon /></a><span id='cart-num'>{total_item}</span></li>
                     {cookies.access_token && 
                     <li>
-                        <a href="/profile"><img className='navbar-img' src={user.imageUrl}/><ArrowDropDownIcon/></a>
+                        {console.log(user.picture)}
+                        <a href="/profile"><img className='navbar-img' src={user.picture} referrerPolicy="no-referrer"/><ArrowDropDownIcon/></a>
                         <ul id='sub-menu'>
                             <li><a href='/profile'>Profile</a></li>
                             <li><a href='/profile/designs'>Designs</a></li>
