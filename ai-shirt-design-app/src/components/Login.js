@@ -1,15 +1,15 @@
-import { GoogleLogin } from "react-google-login"
+import { GoogleLogin } from "@react-oauth/google"
 import "../styles/login.css"
 import LoginIcon from '@mui/icons-material/Login';
-import { GoogleLogout } from "react-google-login"
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useState,useEffect } from "react";
+import { useState,useEffect,useContext } from "react";
 import axios from "axios"
 import { useCookies } from "react-cookie"
 import { isEmpty } from 'lodash';
 import {useNavigate} from "react-router-dom";
+import {jwtDecode} from 'jwt-decode'
 
-const clientId = "726899538432-jjmckcjuugvvg0vlp3ace9dmrhv2jrd3.apps.googleusercontent.com"
+
 
 function Login() {
 
@@ -20,38 +20,40 @@ function Login() {
     googleId: '',
     imageUrl: '',})
 
+
     const navigate = useNavigate()
 
-    const updateUser = (userData) => {
-        setUser({
-          ...user,
-          ...userData,
-        });
+    const onLogoutSuccess = () => {
+        console.log("Log out succesfull!")
+        navigate("/")
+        setCookies("access_token","")
+        window.localStorage.removeItem("user")
+        window.location.reload()
+    }
+
+    const responseGoogle = async (credentialResponse) => {
+        console.log(jwtDecode(credentialResponse.credential));
+        const response = jwtDecode(credentialResponse.credential);
+        
+        try {
+          if (isEmpty(response.errors)) {
+            const request = {
+              IdToken: credentialResponse.credential,
+              Email: response.email,
+              Name: response.name,
+              FirstName: response.given_name,
+              LastName: response.family_name,
+            };
+            //await axios.post("https://localhost:7253/api/auth", request);
+            setCookies("access_token", response.accessToken);
+            window.localStorage.setItem("user", JSON.stringify(response));
+            window.location.reload()
+          }
+        } catch (e) {
+          console.log(e);
+        }
       };
 
-    const onLogoutSuccess = (res) => {
-        console.log("Log out succesfull!")
-        setUser()
-        setCookies("access_token","")
-        window.localStorage.removeItem("username")
-        window.location.reload()
-        navigate("/")
-    }
-
-    const responseGoogle = async (response) => {
-        console.log(response.profileObj)
-        try {
-            if (isEmpty(response.errors)) {
-                //await axios.post('http://localhost:8000/auth/login', response.profileObj);
-                console.log(response)
-                setCookies("access_token",response.accessToken)
-                window.localStorage.setItem("user",JSON.stringify(response.profileObj))
-            }
-        }
-        catch (e) {
-            console.log(e);
-        }
-    }
 
 
     return (
@@ -59,41 +61,18 @@ function Login() {
 
             {!cookies.access_token ? <div id="signInButton">
                 <GoogleLogin
-                    clientId={clientId}
+                    
                     buttonText="Login"
                     onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                    isSignedIn={true}
-                    render={(renderProps) => (
-                        <button
-                            id="custom-google-login-button"
-                            onClick={renderProps.onClick}
-                            disabled={renderProps.disabled}
-                            className="custom-google-button"
-                        >
-                            Login with Google <LoginIcon />
-                        </button>
-                    )}
+                    onError={() => {
+                        console.log('Login failed')
+                    }}
+                    
                 />
             </div>
                 :
                 <div id="signInButton">
-                    <GoogleLogout
-                        clientId={clientId}
-                        buttonText="Logout"
-                        onLogoutSuccess={onLogoutSuccess}
-                        render={(renderProps) => (
-                            <button
-                                id="custom-google-login-button"
-                                onClick={renderProps.onClick}
-                                disabled={renderProps.disabled}
-                                className="custom-google-button"
-                            >
-                                Logout<LogoutIcon />
-                            </button>
-                        )}
-                    />
+                   <button onClick={onLogoutSuccess}>Logout</button>
                 </div>
             }
 

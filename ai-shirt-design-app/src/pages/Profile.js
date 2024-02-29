@@ -6,12 +6,23 @@ import EditIcon from '@mui/icons-material/Edit';
 
 function Profile() {
 
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+
+    })
 
     const [windowDimensions, setWindowDimensions] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
     });
+
+    const handleChange = (event) => {
+        const {name,value} = event.target
+        setUser({...user, [name]:value})
+    }
 
     const handleResize = () => {
         setWindowDimensions({
@@ -19,6 +30,10 @@ function Profile() {
             height: window.innerHeight,
         });
     };
+
+    const handleEdit = () => {
+        console.log(user)
+    }
 
     useEffect(() => {
         const user = JSON.parse(window.localStorage.getItem("user"))
@@ -34,6 +49,7 @@ function Profile() {
             };
         }
         
+        
     }, []); // Empty dependency array means this effect will only run on mount and unmount
 
 
@@ -47,15 +63,32 @@ function Profile() {
                         <div className="profile">
                             <ul className="profile-navbar">
                                 <a href="/profile/"><li id="about">About</li></a>
+                                <a href="/profile/addresses"><li id="addresses">Addresses</li></a>
                                 <a href="/profile/designs"><li id="designs">Designs</li></a>
                                 <a href="/profile/orders"><li id="orders">Orders</li></a>
                             </ul>
                             <div className="about">
-                                <span>Full Name: {user.name +" " + user.familyName}</span>
-                                <span>Email: {user.email}</span>
-                                <span>Phone:</span>
-                                <span>Adress:</span>
+                                <div>
+                                    <label className="about-label">
+                                        Name:
+                                        <input className="about-textbox" type="text" name="name"  value={user.name} onChange={handleChange}/>
+                                    </label>
+
+                                    <label className="about-label">
+                                        Email:
+                                        <input className="about-textbox" type="text" name="name"  value={user.email} onChange={handleChange}/>
+                                    </label>
+                            
+                                    <label className="about-label">
+                                        Phone:
+                                        <input className="about-textbox" type="text" name="name"  value={""} onChange={handleChange}/>
+                                    </label>
+                                </div>
+
+                                <button className="edit-button" onClick={() => handleEdit()}>Save changes</button>
+                                
                             </div>
+
                         </div>
                         :
                         <div className="mobile-container">

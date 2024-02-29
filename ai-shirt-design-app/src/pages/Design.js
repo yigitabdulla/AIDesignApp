@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { fabric } from 'fabric';
 import "../styles/design.css"
 import Navbar from '../components/Navbar';
 import axios from "axios"
 
 function Design() {
+
     const [productArray, setProductArray] = useState([]);
-    const canvasRef = useRef(null);
-    const canvas = new fabric.Canvas(canvasRef.current);
+
+    const [tshirtColor, setTshirtColor] = useState('beyaz');
 
     useEffect(() => {
         // Retrieve the array from local storage when the component mounts
@@ -28,14 +28,12 @@ function Design() {
 
     }
 
-
-
     const addToLocalStorageArray = (item) => {
         // Add a new item to the array and update local storage
         const updatedArray = [...productArray, item];
         setProductArray(updatedArray);
         localStorage.setItem('productArray', JSON.stringify(updatedArray));
-        window.location.reload()
+        
     };
 
     const product = {
@@ -49,65 +47,36 @@ function Design() {
         img: "https://cdn.pixabay.com/photo/2016/12/06/09/31/blank-1886008_640.png"
     }
 
-    const type = {
-        name: "asdasdkljasdkhjasılşkdjaskljdaklsjdkjashd",
-    }
+    const handleColorChange = (color) => {
+        setTshirtColor(color);
+      };
 
-    const handleCustomPictureChange = (e) => {
-        const reader = new FileReader();
-
-        reader.onload = (event) => {
-            const imgObj = new Image();
-            imgObj.src = event.target.result;
-
-            imgObj.onload = () => {
-                const img = new fabric.Image(imgObj);
-                img.scaleToHeight(300);
-                img.scaleToWidth(300);
-
-                const canvasCenter = {
-                    top: canvas.height / 2 - img.height / 2,
-                    left: canvas.width / 2 - img.width / 2,
-                };
-
-                img.set({ top: canvasCenter.top, left: canvasCenter.left });
-                
-
-                canvas.add(img);
-                canvas.renderAll();
-            };
-        };
-
-        if (e.target.files[0]) {
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    };
-
-
+    
     return (
 
         <div className='design-container'>
-            <Navbar />
-            <div className='main'>
-                <div className='controllers'>
-                    <div>
-                        <label htmlFor="tshirt-custompicture">Upload your own design: </label>
-                        <input type="file" id="tshirt-custompicture" onChange={handleCustomPictureChange} />
+            <Navbar/>
+            <div>
+                    
+                    <div className='tshirt'>
+                      {/* Render the t-shirt image dynamically based on selected color */}
+                      <img src={`${process.env.PUBLIC_URL}/${tshirtColor}.png`} alt="T-shirt" />
                     </div>
+
+                    <div className='button-container'>
+                        <p>Color:</p>
+                        <button id='white' onClick={() => handleColorChange('beyaz')}></button>
+                        <button id='red' onClick={() => handleColorChange('kirmizi')}></button>
+                        <button id='blue' onClick={() => handleColorChange('mavi')}></button>
+                        <button id='gri' onClick={() => handleColorChange('gri')}></button>
+                        <button id='sari' onClick={() => handleColorChange('sari')}></button>
+                        <button id='yesil' onClick={() => handleColorChange('yesil')}></button>
+                        <button id='pembe' onClick={() => handleColorChange('pembe')}></button>
+                        <button id='mor' onClick={() => handleColorChange('mor')}></button>
+                        
+                    </div>
+                    
                     <button onClick={() => addToCart(product)}>Add to cart</button>
-                </div>
-                <div id="tshirt-div">
-                    <img
-                        alt='tshirt'
-                        id="tshirt-backgroundpicture"
-                        src="https://cdn.pixabay.com/photo/2017/01/13/04/56/t-shirt-1976334_1280.png"
-                    />
-                    <div id="drawingArea" className="drawing-area">
-                        <div className="canvas-container">
-                            <canvas id="tshirt-canvas" width="200" height="400" ref={canvasRef}></canvas>
-                        </div>
-                    </div>
-                </div>
             </div>
 
 

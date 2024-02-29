@@ -5,11 +5,6 @@ import DrawIcon from '@mui/icons-material/Draw';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
 
 
 function Home() {
@@ -27,9 +22,9 @@ function Home() {
                         <p className='sub-text'>
                             Elevate your style with personalized shirt designs, put your spin on essentials and order effortlessly from AiDesign.
                         </p>
-                        <button className='text-button'>
+                        <a href='/design'><button className='text-button'>
                             Create your own design
-                        </button>
+                        </button></a>
                     </div>
                     <img className="shirt" src="https://images.pexels.com/photos/10250614/pexels-photo-10250614.jpeg" />
                 </div>

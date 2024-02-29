@@ -6,24 +6,28 @@ import Designs from './pages/Designs';
 import Orders from './pages/Orders';
 import Design from './pages/Design'
 import Cart from './pages/Cart'
+import Addresses from './pages/Addresses';
+
 
 function App() {
 
-
+  
   return (
     
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/profile" element={<Profile />}/>
-          <Route path="/profile/designs" element={<Designs />}/>
-          <Route path="/profile/orders" element={<Orders />}/>
-          <Route path="/design" element={<Design/>}/>
-          <Route path="/cart" element={<Cart/>}/>
-        </Routes>
-      </Router>
-    </div>
+      <div className="App">
+          <Router>
+            <Routes>
+              <Route path="/" element={<Home />}/>
+              <Route path="/profile" element={<Profile />}/>
+              <Route path="/profile/designs" element={<Designs />}/>
+              <Route path="/profile/orders" element={<Orders />}/>
+              <Route path="/profile/addresses" element={<Addresses />}/>
+              <Route path="/design" element={<Design/>}/>
+              <Route path="/cart" element={<Cart/>}/>
+            </Routes>
+          </Router>
+        
+      </div>
   );
 }
 
