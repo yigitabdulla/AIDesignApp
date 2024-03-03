@@ -14,11 +14,7 @@ import {jwtDecode} from 'jwt-decode'
 function Login() {
 
     const [cookies,setCookies] = useCookies(["access_token"])
-    const [user, setUser] = useState({name: '',
-    familyName: '',
-    email: '',
-    googleId: '',
-    imageUrl: '',})
+    const [userCookie,setUserCookie] = useCookies(["user_info"])
 
 
     const navigate = useNavigate()
@@ -27,6 +23,7 @@ function Login() {
         console.log("Log out succesfull!")
         navigate("/")
         setCookies("access_token","")
+        setUserCookie("user_info", "")
         window.localStorage.removeItem("user")
         window.location.reload()
     }
@@ -44,9 +41,16 @@ function Login() {
               FirstName: response.given_name,
               LastName: response.family_name,
             };
+            
+            const user = {
+              name: response.name,
+              email: response.email,
+              picture: response.picture
+
+            }
             //await axios.post("https://localhost:7253/api/auth", request);
             setCookies("access_token", response.accessToken);
-            window.localStorage.setItem("user", JSON.stringify(response));
+            setUserCookie("user_info", user)
             window.location.reload()
           }
         } catch (e) {

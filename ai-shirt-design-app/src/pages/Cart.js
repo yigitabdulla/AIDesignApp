@@ -60,7 +60,7 @@ function Cart() {
             <ul className='product-list'>
                 {myArray.map((item, index) => (
                     <li className='product' key={index}>
-                        <img className='list-img' src={item.img} />
+                        <img className='list-img' src={item.image} />
                         <span>{item.name}</span>
                         <span>
                             Total Price: {calculateTotalPrice(item)}

@@ -2,9 +2,12 @@ import Navbar from "../components/Navbar"
 import "../styles/profile.css"
 import React, { useState, useEffect } from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useCookies } from "react-cookie";
 import EditIcon from '@mui/icons-material/Edit';
 
 function Profile() {
+
+    const [userCookie,setUserCookie] = useCookies(["user_info"])
 
     const [user, setUser] = useState({
         name: "",
@@ -36,8 +39,7 @@ function Profile() {
     }
 
     useEffect(() => {
-        const user = JSON.parse(window.localStorage.getItem("user"))
-        setUser(user)
+        setUser(userCookie.user_info)
         // Check if window is defined (for example, during server-side rendering)
         if (typeof window !== 'undefined') {
             // Add event listener on component mount

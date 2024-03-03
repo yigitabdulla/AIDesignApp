@@ -7,6 +7,7 @@ import Login from './Login';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import SearchIcon from '@mui/icons-material/Search';
 
 
 const clientId = "726899538432-jjmckcjuugvvg0vlp3ace9dmrhv2jrd3.apps.googleusercontent.com"
@@ -20,6 +21,7 @@ function Navbar() {
     })
 
     const [cookies, setCookies] = useCookies(["access_token"])
+    const [userCookie,setUserCookie] = useCookies(["user_info"])
 
     const navRef = useRef()
 
@@ -31,9 +33,9 @@ function Navbar() {
     useEffect(() => {
         // Retrieve the array from local storage when the component mounts
         const storedArray = JSON.parse(localStorage.getItem('productArray')) || [];
-        const user = JSON.parse(window.localStorage.getItem("user"))
         setMyArray(storedArray);
-        setUser(user)
+        console.log(userCookie.user_info)
+        setUser(userCookie.user_info)
         console.log()
     },[]);
 
@@ -48,6 +50,7 @@ function Navbar() {
                     <a href="/">Ai Shirt Design</a>
                 </div>
                 <ul>
+                    <li><a href="/products">Products <SearchIcon /></a></li>
                     <li><a href="/design">Design <BrushIcon /></a></li>
                     <li><a href="/cart">Cart <ShoppingCartIcon /></a><span id='cart-num'>{total_item}</span></li>
                     {cookies.access_token && 
