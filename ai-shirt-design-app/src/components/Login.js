@@ -63,7 +63,7 @@ function Login() {
     return (
         <>
 
-            {!cookies.access_token ? <div id="signInButton">
+            {!cookies.access_token ? <div className="custome-google-button">
                 <GoogleLogin
                     
                     buttonText="Login"
@@ -75,9 +75,9 @@ function Login() {
                 />
             </div>
                 :
-                <div id="signInButton">
-                   <button onClick={onLogoutSuccess}>Logout</button>
-                </div>
+              <div className="logout">
+                 <button className="logout-button" onClick={onLogoutSuccess}>Logout</button>
+              </div>
             }
 
 

@@ -14,6 +14,9 @@ function Cart() {
     useEffect(() => {
         // Retrieve the array from local storage when the component mounts
         const storedArray = JSON.parse(localStorage.getItem('productArray')) || [];
+        storedArray.forEach(item => {
+            item.quantity = parseInt(item.quantity);
+        });
         setMyArray(storedArray);
     }, []);
 
@@ -62,7 +65,7 @@ function Cart() {
                     <li className='product' key={index}>
                         <img className='list-img' src={item.image} />
                         <span>{item.name}</span>
-                        <span>
+                        <span className='total-price'>
                             Total Price: {calculateTotalPrice(item)}
                         </span>
                         <div className='quantity-section'>

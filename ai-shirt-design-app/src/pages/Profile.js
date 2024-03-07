@@ -78,12 +78,12 @@ function Profile() {
 
                                     <label className="about-label">
                                         Email:
-                                        <input className="about-textbox" type="text" name="name"  value={user.email} onChange={handleChange}/>
+                                        <input className="about-textbox" type="text" name="email"  value={user.email} onChange={handleChange}/>
                                     </label>
                             
                                     <label className="about-label">
                                         Phone:
-                                        <input className="about-textbox" type="text" name="name"  value={""} onChange={handleChange}/>
+                                        <input className="about-textbox" type="text" name="phone"  value={""} onChange={handleChange}/>
                                     </label>
                                 </div>
 

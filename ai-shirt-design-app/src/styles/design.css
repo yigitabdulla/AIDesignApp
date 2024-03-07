@@ -9,6 +9,7 @@
 	  font-family: 'Playfair Display', serif;
 }
 
+.canvas {}
 .drawing-area {
   position: absolute;
   top: 100px;

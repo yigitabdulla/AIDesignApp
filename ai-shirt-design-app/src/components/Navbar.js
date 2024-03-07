@@ -8,16 +8,24 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import SearchIcon from '@mui/icons-material/Search';
+import Button from '@mui/material/Button';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Grow from '@mui/material/Grow';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import Stack from '@mui/material/Stack';
 
-
-const clientId = "726899538432-jjmckcjuugvvg0vlp3ace9dmrhv2jrd3.apps.googleusercontent.com"
 
 function Navbar() {
 
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef(null);
    
     const [myArray, setMyArray] = useState([]);
     const [user, setUser] = useState({
-        profile: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+        picture: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
     })
 
     const [cookies, setCookies] = useCookies(["access_token"])
@@ -29,6 +37,38 @@ function Navbar() {
         navRef.current.classList.toggle("dropdown-menu")
     }
 
+    const handleToggle = () => {
+        setOpen((prevOpen) => !prevOpen);
+      };
+    
+    const handleClose = (event) => {
+      if (anchorRef.current && anchorRef.current.contains(event.target)) {
+        return;
+      }
+
+      setOpen(false);
+    };
+
+    function handleListKeyDown(event) {
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        setOpen(false);
+      } else if (event.key === 'Escape') {
+        setOpen(false);
+      }
+    }
+
+    // return focus to the button when we transitioned from !open -> open
+    const prevOpen = React.useRef(open);
+
+    React.useEffect(() => {
+      if (prevOpen.current === true && open === false) {
+        anchorRef.current.focus();
+      }
+
+      prevOpen.current = open;
+    }, [open]);
+
 
     useEffect(() => {
         // Retrieve the array from local storage when the component mounts
@@ -36,11 +76,10 @@ function Navbar() {
         setMyArray(storedArray);
         console.log(userCookie.user_info)
         setUser(userCookie.user_info)
-        console.log()
     },[]);
 
 
-    const total_item = myArray.reduce((sum, item) => sum + item.quantity, 0);
+    const total_item = myArray.reduce((sum, item) => sum + parseInt(item.quantity), 0);
 
     return (
         <>
@@ -54,14 +93,58 @@ function Navbar() {
                     <li><a href="/design">Design <BrushIcon /></a></li>
                     <li><a href="/cart">Cart <ShoppingCartIcon /></a><span id='cart-num'>{total_item}</span></li>
                     {cookies.access_token && 
-                    <li>
-                        {cookies.acces_token ? <img className='navbar-img' src={user.profile}/> : <img className='navbar-img' src={user.picture}/>}
-                        <ul id='sub-menu'>
-                            <li><a href='/profile'>Profile</a></li>
-                            <li><a href='/profile/designs'>Designs</a></li>
-                            <li><a href='/profile/orders'>Orders</a></li>
-                            <li><a><Login /></a></li>
-                        </ul>
+                    <li id='mu-menu'>
+                        <Stack direction="row" spacing={2}>
+                            <div>
+                                <Button
+                                ref={anchorRef}
+                                id="composition-button"
+                                aria-controls={open ? 'composition-menu' : undefined}
+                                aria-expanded={open ? 'true' : undefined}
+                                aria-haspopup="true"
+                                onClick={handleToggle}
+                                style={{color:'black'}}
+                                >
+                                <img className='navbar-img' src={user.picture} />
+                                <ArrowDropDownIcon/>
+                                </Button>
+                                <Popper
+                                open={open}
+                                anchorEl={anchorRef.current}
+                                role={undefined}
+                                placement="bottom-start"
+                                transition
+                                disablePortal
+                                >
+                                {({ TransitionProps, placement }) => (
+                                    <Grow
+                                    {...TransitionProps}
+                                    style={{
+                                        transformOrigin:
+                                        placement === 'bottom-start' ? 'left top' : 'left bottom',
+                                    }}
+                                    >
+                                    <Paper>
+                                        <ClickAwayListener onClickAway={handleClose}>
+                                        <MenuList
+                                            autoFocusItem={open}
+                                            id="composition-menu"
+                                            aria-labelledby="composition-button"
+                                            onKeyDown={handleListKeyDown}
+                                            style={{display: 'flex', alignItems: 'center', justifyContent: 'center',textAlign: 'center'}}
+                                        >
+                                            <MenuItem style={{margin: 'auto'}} onClick={handleClose}><a href='/profile'>Profile</a></MenuItem>
+                                            <MenuItem style={{margin: 'auto'}} onClick={handleClose}><a href='/profile/orders'>Orders</a></MenuItem>
+                                            <MenuItem style={{margin: 'auto'}} onClick={handleClose}><a href='/profile/designs'>Designs</a></MenuItem>
+                                            <MenuItem style={{margin: 'auto'}} onClick={handleClose}>{cookies.access_token &&<a><Login /></a>}</MenuItem>
+                                        </MenuList>
+                                        </ClickAwayListener>
+                                    </Paper>
+                                    </Grow>
+                                )}
+                                </Popper>
+                            </div>
+                        </Stack>
                     </li>}
                     {!cookies.access_token && <li className='sign-in'><a><Login /></a></li>}
                 </ul>
